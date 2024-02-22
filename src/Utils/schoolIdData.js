@@ -1,0 +1,25 @@
+const schoolIdData = {
+  img: "./Assets/school-logo.png",
+  schoolName: "Kendriya Vidlaya Govindapur (BSF)",
+  photo: "./Assets/boy1.jpg",
+  schoolId: "1hyat2hsta2t",
+  uidNo: "123456",
+  schoolPhone: "999999999",
+  schoolEmail: "school@email.com",
+  schoolStreet: "Mirual",
+  schoolCity: "Raiganj",
+  schoolState: "West Bengal",
+  schoolPincode: "Pin- 733134",
+  name: "",
+  admissionNo: "",
+  dob: "",
+  bloodGroup: "",
+  fatherName: "",
+  motherName: "",
+  class: "",
+  section: "",
+  contactNo: "",
+  email: "",
+};
+
+export default schoolIdData;
