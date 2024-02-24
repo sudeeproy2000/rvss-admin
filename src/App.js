@@ -6,9 +6,10 @@ import AddNewTeacher from "./Components/AddNewTeacher";
 import AssignClassTeacher from "./Components/AssignClassTeacher";
 import SchoolIDCard from "./Components/SchoolIdCard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import schoolIdData from "./Utils/schoolIdData";
-import SchoolIDCardPreview from "./Components/SchoolIDCardPreview";
+
 import SchoolIdCardForm from "./Components/SchoolIdCardForm";
+import IdCardTemplate1 from "./Components/IDCardTemplate1";
+import IdCardTemplate2 from "./Components/IDCardTemplate2";
 
 function App() {
   return (
@@ -20,11 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Teacher />} />
           <Route path="/idcard" element={<SchoolIDCard />} />
-          <Route path="/schoolidcardform" element={<SchoolIdCardForm />} />
-          <Route
-            path="/schoolidcardpreview"
-            element={<SchoolIDCardPreview studentData={schoolIdData} />}
-          />
+          <Route path="/schoolidcardform/:id" element={<SchoolIdCardForm />} />
+
+          <Route path="/template1" element={<IdCardTemplate1 />} />
+          <Route path="/template2" element={<IdCardTemplate2 />} />
           <Route path="/addnewteacher" element={<AddNewTeacher />} />
           <Route path="/assignclassteacher" element={<AssignClassTeacher />} />
         </Routes>

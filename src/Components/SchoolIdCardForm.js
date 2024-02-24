@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function SchoolIdCardForm() {
+  const { id } = useParams();
+
   const school_id = Math.random().toString(36).slice(2);
+
+  const [schoolDetails, setSchoolDetails] = useState({
+    // ... (your existing state variables)
+    schoolLogo: null,
+    principalSignature: null,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setSchoolDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e, fileType) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setSchoolDetails((prevDetails) => ({
+      ...prevDetails,
+      [fileType]: file,
+    }));
+  };
+  console.log(schoolDetails);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here, you can access the complete schoolDetails object and perform any necessary actions.
+    setSchoolDetails((prevDetails) => ({
+      ...prevDetails,
+      [id]: id,
+    }));
+    console.log("Submitted School Details:", schoolDetails);
+  };
 
   return (
     <form>
@@ -30,6 +67,8 @@ export default function SchoolIdCardForm() {
                   name="first-name"
                   id="first-name"
                   autoComplete="given-name"
+                  value={schoolDetails.schoolName}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -47,6 +86,8 @@ export default function SchoolIdCardForm() {
                   type="text"
                   name="last-name"
                   id="last-name"
+                  value={schoolDetails.tagLine}
+                  onChange={handleInputChange}
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -66,6 +107,8 @@ export default function SchoolIdCardForm() {
                   name="phone"
                   type="tel"
                   autoComplete="phone"
+                  value={schoolDetails.phoneNumber1}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -84,6 +127,8 @@ export default function SchoolIdCardForm() {
                   name="phone"
                   type="tel"
                   autoComplete="phone"
+                  value={schoolDetails.phoneNumber2}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -102,6 +147,8 @@ export default function SchoolIdCardForm() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={schoolDetails.email}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -120,6 +167,8 @@ export default function SchoolIdCardForm() {
                   name="number"
                   type="session"
                   autoComplete="number"
+                  value={schoolDetails.session}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -138,6 +187,8 @@ export default function SchoolIdCardForm() {
                   name="street-address"
                   id="street-address"
                   autoComplete="street-address"
+                  value={schoolDetails.streetAddress}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -156,6 +207,8 @@ export default function SchoolIdCardForm() {
                   name="city"
                   id="city"
                   autoComplete="address-level2"
+                  value={schoolDetails.city}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -173,6 +226,8 @@ export default function SchoolIdCardForm() {
                   id="state"
                   name="state"
                   autoComplete="state-name"
+                  value={schoolDetails.state}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
                   <option>West Bengal</option>
@@ -228,6 +283,8 @@ export default function SchoolIdCardForm() {
                   name="postal-code"
                   id="postal-code"
                   autoComplete="postal-code"
+                  value={schoolDetails.pinCode}
+                  onChange={handleInputChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -236,42 +293,47 @@ export default function SchoolIdCardForm() {
         </div>
       </div>
 
-      <div className="space-y-12 p-10 flex justify-around">
-        <div className="flex flex-col items-center justify-center border-2 p-2">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            for="file_input"
-          >
-            Upload School Logo
-          </label>
-          <input
-            className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            id="file_input"
-            type="file"
-          />
+      <div className="flex flex-col items-center justify-center border-2 p-2">
+        <label
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          htmlFor="schoolLogoInput"
+        >
+          Upload School Logo
+        </label>
+        <input
+          className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          id="schoolLogoInput"
+          type="file"
+          onChange={(e) => handleFileChange(e, "schoolLogo")}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
+          type="button"
+        >
+          Upload
+        </button>
+      </div>
 
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4">
-            Upload
-          </button>
-        </div>
-
-        <div className="flex flex-col items-center justify-center border-2 p-2">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            for="file_input"
-          >
-            Upload Principle Signature
-          </label>
-          <input
-            className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            id="file_input"
-            type="file"
-          />
-
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4">
-            Upload
-          </button>
-        </div>
+      {/* Principal Signature Upload */}
+      <div className="flex flex-col items-center justify-center border-2 p-2">
+        <label
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          htmlFor="principalSignatureInput"
+        >
+          Upload Principal Signature
+        </label>
+        <input
+          className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          id="principalSignatureInput"
+          type="file"
+          onChange={(e) => handleFileChange(e, "principalSignature")}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
+          type="button"
+        >
+          Upload
+        </button>
       </div>
 
       <div className="mt-2 mb-6 p-10 flex items-center justify-center gap-x-6">
@@ -284,6 +346,7 @@ export default function SchoolIdCardForm() {
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          onClick={handleSubmit}
         >
           Save
         </button>

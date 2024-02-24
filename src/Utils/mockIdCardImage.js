@@ -1,10 +1,12 @@
 const idCardData = [
   {
-    img: `./images/id1.png`,
+    id: `1`,
+    img: `./Assets/id1.png`,
     name: `Template 1`,
   },
   {
-    img: `./images/id2.png`,
+    id: `2`,
+    img: `./Assets/id2.png`,
     name: `Template 2`,
   },
 ];
